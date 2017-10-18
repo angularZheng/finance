@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class IndexController {
 
-    @RequestMapping(value = "index",method = RequestMethod.GET )
-    public  String index(String name){
+    @RequestMapping(value = "/")
+    public  String index(){
         return "zhengbing";
     }
 }

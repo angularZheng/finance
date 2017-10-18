@@ -5,6 +5,7 @@ import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
@@ -15,7 +16,8 @@ public class CallBackController {
 
 
     @RequestMapping(value = "callback")
-    public String callBack(String code) throws IOException{
+    public String callBack( HttpServletRequest request) throws IOException{
+        String code = request.getParameter( "code" );
         String url = "https://api.weixin.qq.com/sns/oauth2/access_token?"
                 + "appid=" + AuthUtil.APPID
                 + "&secret=" +AuthUtil.APPSECRET
