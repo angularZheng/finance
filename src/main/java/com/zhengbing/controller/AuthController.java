@@ -48,7 +48,7 @@ public class AuthController {
         String infoUrl = "https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
         infoUrl = infoUrl.replace("ACCESS_TOKEN",token);
         infoUrl = infoUrl.replace("OPENID",openid);
-//        JSONObject userinfo = AuthUtil.doGetJson(infoUrl);
+        JSONObject userinfo = AuthUtil.doGetJson(infoUrl);
 
 //        UserInfo userInfo = new UserInfo();
 //        userInfo
