@@ -5,7 +5,7 @@ package com.zhengbing.controller;
 /**
  * Created by zhengbing on 2017-10-19.
  */
-public class UserInfoController {
+public class UserController {
 
     public void main(String ara[]){
         //UserInfo userInfo = UserInfo.builder().build();
