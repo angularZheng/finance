@@ -1,8 +1,5 @@
 package com.zhengbing.service.impl;
 
-import com.zhengbing.service.IUserService;
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /**
@@ -11,12 +8,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class UserServiceImplTest {
 
-    @Autowired
-    private IUserService userService;
-
-    @Test
-    public void findUserByName() throws Exception {
-        System.out.println(userService.findUserByName("admin") );
-    }
+//    @Autowired
+//    private IUserService userService;
+//
+//    @Test
+//    public void findUserByName() throws Exception {
+//        System.out.println(userService.findUserByName("admin") );
+//    }
 
 }

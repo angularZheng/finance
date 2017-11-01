@@ -7,5 +7,7 @@ import com.zhengbing.entity.User;
  */
 public interface IUserService {
 
-    User findUserByName( String name) throws Exception;
+    User findByUsername( String username);
+
+    User update(User user);
 }

@@ -2,28 +2,30 @@ package com.zhengbing.service.impl;
 
 import com.zhengbing.entity.User;
 import com.zhengbing.repository.UserRepository;
+import com.zhengbing.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by zhengbing on 2017/10/19.
  */
-public class UserServiceImpl implements UserDetailsService {
+@Service( "userService" )
+public class UserServiceImpl implements IUserService{
 
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername( String name ) throws UsernameNotFoundException {
-        User user = userRepository.findByName( name );
-
-        if (user == null) {
-            throw new UsernameNotFoundException( "用户名不存在" );
-        }
-        System.out.println("s:"+ name );
-        System.out.println("username:"+user.getName()+";password:"+user.getPassword());
-        return user;
+    public User findByUsername(String username){
+        return userRepository.findByUsername( username );
     }
+
+    @Override
+    public User update(User user){
+        return userRepository.save( user );
+    }
+
 }

@@ -23,6 +23,6 @@ public class UserRepositoryTest {
     @Test
     @Transactional
     public void findByName(){
-        System.out.println( userRepository.findByName( "admin" ) );
+        System.out.println( userRepository.findByUsername( "admin" ) );
     }
 }
