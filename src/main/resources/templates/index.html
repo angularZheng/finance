@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <title>首页</title>
     <meta charset="utf-8" />
@@ -11,6 +12,11 @@
     <link rel="stylesheet" href="../static/lib/weui.css" />
     <link rel="stylesheet" href="../static/css/jquery-weui.css" />
     <!--<link rel="stylesheet" href="css/demos.css">-->
+
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script>
+
+    </script>
     <style>
         .placeholder {
             margin: 0px;
@@ -28,8 +34,8 @@
         #headIcon img{
             border: 0em;
             border-radius:50%;
-            width: 8em;
-            height: 8em;
+            width: 7em;
+            height: 7em;
         }
         #vip{
             text-align: center;
@@ -75,33 +81,33 @@
     <div class="weui-flex__item"><div class="placeholder"><label style="color: white">我的会员</label></div></div>
 </div>
 <div class="weui-flex">
-    <div class="weui-flex__item" id="headIcon"><img src="../static/images/2.jpg" /></div>
+    <div class="weui-flex__item" id="headIcon"><img th:src="${user.headimgurl}" /></div>
 </div>
 <div class="weui-flex" style="margin-top:0.025em">
-    <div class="weui-flex__item"><div id="username">微信号名称</div></div>
+    <div class="weui-flex__item"><div id="username"><p th:text="${user.nickname}"></p></div></div>
     <div class="weui-flex__item"><div id="vip"><img src="../static/images/vip.png" /></div></div>
     <div class="weui-flex__item"><div id="star"><img src="../static/images/star.png" /><img src="../static/images/star.png" /><img src="../static/images/star.png" /><img src="../static/images/star.png" /><img src="../static/images/star.png" /></div></div>
 </div>
 
 <div class="weui-flex">
-    <div class="weui-flex__item"><div class="placeholder">超级会员至</div></div>
-    <div class="weui-flex__item"><div class="placeholder">2017-10-30</div></div>
+    <div class="weui-flex__item"><div class="placeholder" style="text-align: right;color: gold;">超级会员至</div></div>
+    <div class="weui-flex__item"><div class="placeholder" style="text-align: left;color: gold">2017-10-30</div></div>
 </div>
     </div>
     </div>
 <div class="weui-panel" style="margin-top:0;border: 1px solid rgb(173,0,0);">
     <div class="weui-flex" style="margin-top:0.025em">
-        <div class="weui-flex__item"><div id="d1" style="text-align: center"><img src="../static/images/diamond.png" />234</div></div>
-        <div class="weui-flex__item"><div id="d2"><img src="../static/images/diamond.png" /></div></div>
-        <div class="weui-flex__item"><div id="d3"><img src="../static/images/diamond.png" /> </div></div>
+        <div class="weui-flex__item"><div id="d1" style="text-align: center"><img src="../static/images/diamond.png" />舆情分析</div></div>
+        <div class="weui-flex__item"><div id="d2" style="text-align: center"><img src="../static/images/diamond.png" />行业报告</div></div>
+        <div class="weui-flex__item"><div id="d3" style="text-align: center"><img src="../static/images/diamond.png" />智能预测</div></div>
     </div>
     <div class="weui-flex" style="margin-top:0.025em">
-        <div class="weui-flex__item"><div id="d1" style="text-align: center"><img src="../static/images/diamond.png" />234</div></div>
-        <div class="weui-flex__item"><div id="d2"><img src="../static/images/diamond.png" /></div></div>
-        <div class="weui-flex__item"><div id="d3"><img src="../static/images/diamond.png" /> </div></div>
+        <div class="weui-flex__item"><div id="d1" style="text-align: center"><img src="../static/images/diamond.png" />精准内参</div></div>
+        <div class="weui-flex__item"><div id="d2" style="text-align: center"><img src="../static/images/diamond.png" />牛股推荐</div></div>
+        <div class="weui-flex__item"><div id="d3" style="text-align: center"><img src="../static/images/diamond.png" />专家点评</div></div>
     </div>
-    <div class="weui-flex" style="text-align: center" >
-        <div class="weui-flex__item"><a href="javascript:;" class="weui-btn weui-btn_warn">续费超级会员</a></div>
+    <div class="weui-flex" style="text-align: center;margin-top: 0.7em;" >
+        <div class="weui-flex__item"><a href="/wxpay/pay" class="weui-btn weui-btn_warn">续费超级会员</a></div>
     </div>
 </div>
 

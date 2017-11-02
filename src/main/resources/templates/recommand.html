@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>首页</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <meta name="description" content="describle" />
+
+    <link rel="stylesheet" href="../static/lib/weui.css" />
+    <link rel="stylesheet" href="../static/css/jquery-weui.css" />
+    <!--<link rel="stylesheet" href="css/demos.css">-->
+    <style>
+        .placeholder {
+            margin: 0px;
+            padding: 0 5px;
+            /*background-color: #ebebeb;*/
+            height: 2.5em;
+            line-height: 2.3em;
+            text-align: center;
+            color: #cfcfcf;
+        }
+        #headIcon{
+            margin:10px auto;
+            text-align: center;
+        }
+        #headIcon img{
+            border: 0em;
+            border-radius:50%;
+            width: 8em;
+            height: 8em;
+        }
+        #vip{
+            text-align: center;
+        }
+        #vip img{
+            border: 0em;
+            width: 5.6em;
+            height: 1.25em;
+        }
+        #star{
+            text-align: left;
+        }
+        #star img{
+            border: 0em;
+            width: 1.15em;
+            height: 1.25em;
+        }
+        #username{
+            text-align: right;
+            color: gold;
+        }
+        #d1 img{
+            width: 7.25em;
+            height: 7.0em;
+        }
+        #d2 img{
+            width: 7.25em;
+            height: 7.0em;
+        }
+        #d3 img{
+            width: 7.25em;
+            height: 7.0em;
+        }
+    </style>
+    <script src="../static/js/jquery-weui.js"></script>
+</head>
+<!--<body =ontouchstart>-->
+<body>
+<div class="weui-flex" style="margin-top:-0.3em;padding: 0em">
+    <div class="weui-flex__item">
+        <div><img src="../static/images/rec_title.png" style="width: 100%;height: 6em"  /></div>
+    </div>
+</div>
+
+<div class="weui-flex" style="flex: 9;margin-top: 0.2em">
+    <div class="weui-flex__item" style="flex: 1">
+        <div style="text-align: left;margin-left: 1.2em;margin-top: 0.2em;float: left">
+            <img src="../static/images/niu.png" style="height: 2.0em;width: 2em"  />
+        </div>
+    </div>
+    <div class="weui-flex__item" style="flex: 7;">
+        <div style="text-align: left;margin-left: 0.6em;float: left">
+            <label>牛股推荐</label>
+        </div>
+    </div>
+</div>
+<div class="weui-flex">
+    <div class="weui-flex__item">
+        <div style="text-align: right;margin: 0.2em 1em 0.2em 1em;">
+            <hr style="color: rgb(173,0,0)" />
+        </div>
+    </div>
+</div>
+<div class="weui-flex" style="flex: 9;margin-top: 0.5em">
+    <div class="weui-flex__item" style="flex: 1">
+        <div style="text-align: right;margin-left: 1.0em;margin-top: 0.2em;float: left">
+            <img src="../static/images/v_red.png" style="height: 1.0em"  />
+        </div>
+    </div>
+    <div class="weui-flex__item" style="flex: 8;">
+        <div style="text-align: left;">
+            <label>大盘态势</label>
+        </div>
+    </div>
+</div>
+<div class="weui-flex">
+    <div class="weui-flex__item">
+        <div style="text-align: left;margin: 1em;">
+            总部经济作为一个新的经济概念，在2002年提出后得到了广泛认可和高度关注。
+            北京、上海、广州等国内众多中心城市相继提出发展总部经济，通过总部经济的模式实现城市的转型升级，
+            促进城市经济的发展。近十多年来，国内城市掀起了发展总部经济的热潮，
+        </div>
+    </div>
+</div>
+<div class="weui-flex">
+    <div class="weui-flex__item">
+        <div style="text-align: right;margin: 1em;">
+            <hr style="color: rgb(173,0,0)" />
+        </div>
+    </div>
+</div>
+<div class="weui-flex" style="flex: 9">
+    <div class="weui-flex__item" style="flex: 1">
+        <div style="text-align: right;margin-left: 1.0em;margin-top: 0.2em;float: left">
+            <img src="../static/images/v_red.png" style="height: 1.0em"  />
+        </div>
+    </div>
+    <div class="weui-flex__item" style="flex: 8;">
+        <div style="text-align: left;">
+            <label>多空新闻</label>
+        </div>
+    </div>
+</div>
+<div class="weui-flex" style="flex: 9">
+    <div class="weui-flex__item" style="flex: 1">
+        <div style="text-align: left;margin-left: 1.2em;margin-top: 0.2em;float: left">
+            <img src="../static/images/newer_r.png" style="height: 1.0em"  />
+        </div>
+    </div>
+    <div class="weui-flex__item" style="flex: 7;">
+        <div style="text-align: left;margin-left: 0.2em;float: left">
+            <label>中国总部经济发展研究报告（2016）</label>
+        </div>
+    </div>
+</div>
+<div class="weui-flex" style="flex: 9">
+    <div class="weui-flex__item" style="flex: 1">
+        <div style="text-align: left;margin-left: 1.2em;margin-top: 0.2em;float: left">
+            <img src="../static/images/newer_r.png" style="height: 1.0em"  />
+        </div>
+    </div>
+    <div class="weui-flex__item" style="flex: 7;">
+        <div style="text-align: left;margin-left: 0.2em;float: left">
+            <label>中国总部经济发展研究报告（2016）</label>
+        </div>
+    </div>
+</div>
+<div class="weui-flex" style="flex: 9">
+    <div class="weui-flex__item" style="flex: 1">
+        <div style="text-align: left;margin-left: 1.2em;margin-top: 0.2em;float: left">
+            <img src="../static/images/newer_b.png" style="height: 1.0em"  />
+        </div>
+    </div>
+    <div class="weui-flex__item" style="flex: 7;">
+        <div style="text-align: left;margin-left: 0.2em;float: left">
+            <label>中国总部经济发展研究报告（2016）</label>
+        </div>
+    </div>
+</div>
+<div class="weui-flex" style="flex: 9">
+    <div class="weui-flex__item" style="flex: 1">
+        <div style="text-align: left;margin-left: 1.2em;margin-top: 0.2em;float: left">
+            <img src="../static/images/newer_b.png" style="height: 1.0em"  />
+        </div>
+    </div>
+    <div class="weui-flex__item" style="flex: 7;">
+        <div style="text-align: left;margin-left: 0.2em;float: left">
+            <label>中国总部经济发展研究报告（2016）</label>
+        </div>
+    </div>
+</div>
+
+<div class="weui-flex">
+    <div class="weui-flex__item">
+        <div style="text-align: right;margin: 1em;">
+            <hr style="color: rgb(173,0,0)" />
+        </div>
+    </div>
+</div>
+<div class="weui-flex" style="flex: 9">
+    <div class="weui-flex__item" style="flex: 1">
+        <div style="text-align: right;margin-left: 1.0em;margin-top: 0.2em;float: left">
+            <img src="../static/images/v_red.png" style="height: 1.0em"  />
+        </div>
+    </div>
+    <div class="weui-flex__item" style="flex: 8;">
+        <div style="text-align: left;">
+            <label>热点牛股</label>
+        </div>
+    </div>
+</div>
+<div class="weui-flex" style="text-align: center">
+    <div class="weui-flex__item">
+       <table  style="width: 98%;border: 0.0625em solid rgb(173,0,0)">
+           <thead style="background-color: lightcoral;">
+            <td style="border: 0.0625em solid rgb(173,0,0);width: 5em;">主题</td>
+            <td style="border: 0.0625em solid rgb(173,0,0)">涨幅因素</td>
+            <td style="border: 0.0625em solid rgb(173,0,0)">受益热股</td>
+           </thead>
+           <tbody>
+                <tr>
+                    <td style="border: 0.0625em solid rgb(173,0,0)">雄安新区</td>
+                    <td style="border: 0.0625em solid rgb(173,0,0)">BAT抱团入驻+重点项目先行</td>
+                    <td style="border: 0.0625em solid rgb(173,0,0)">启迪桑达/太空板业</td>
+                </tr>
+                <tr>
+                    <td style="border: 0.0625em solid rgb(173,0,0)">雄安新区</td>
+                    <td style="border: 0.0625em solid rgb(173,0,0)">BAT抱团入驻+重点项目先行</td>
+                    <td style="border: 0.0625em solid rgb(173,0,0)">启迪桑达/太空板业</td>
+                </tr>
+           </tbody>
+       </table>
+    </div>
+</div>
+</body>
+</html>

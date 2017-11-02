@@ -1,10 +1,12 @@
 package com.zhengbing.controller;
 
+import com.zhengbing.entity.WxUserInfo;
 import com.zhengbing.util.AuthUtil;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +26,7 @@ public class AuthController {
 
     @RequestMapping("wxLogin")
     public void wxLogin(HttpServletResponse response) throws IOException{
-        String backUrl = "http://8d928ca5.ngrok.io/callback";
+        String backUrl = "http://ebf94a64.ngrok.io/callback";
         String requestUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect";
         requestUrl = requestUrl.replace("APPID",AuthUtil.APPID);
         requestUrl = requestUrl.replace("REDIRECT_URI",URLEncoder.encode(backUrl,"UTF-8"));
@@ -33,7 +35,7 @@ public class AuthController {
     }
 
     @RequestMapping(value = "callback")
-    public String callBack( HttpServletRequest request) throws IOException{
+    public String callBack(HttpServletRequest request, Model model) throws IOException{
 
         String code = request.getParameter( "code" );
         System.out.println(code);
@@ -50,10 +52,18 @@ public class AuthController {
         infoUrl = infoUrl.replace("OPENID",openid);
         JSONObject userinfo = AuthUtil.doGetJson(infoUrl);
 
-//        UserInfo userInfo = new UserInfo();
-//        userInfo
-
-        return "zhengbing";
+        WxUserInfo wxuser = new WxUserInfo();
+        wxuser.setCity(userinfo.getString("city" ));
+        wxuser.setProvince(userinfo.getString("province" ));
+        wxuser.setCountry(userinfo.getString("country" ));
+        wxuser.setSex(userinfo.getInt("sex" ));
+        wxuser.setOpenid(userinfo.getString("openid" ));
+        wxuser.setNickname(userinfo.getString("nickname" ));
+        wxuser.setLanguage(userinfo.getString("language" ));
+        wxuser.setHeadimgurl(userinfo.getString("headimgurl" ));
+        System.out.println(wxuser);
+        model.addAttribute("user",wxuser);
+        return "index";
     }
 
 }
