@@ -12,15 +12,15 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class IndexController {
 
-    @RequestMapping(value = "/")
-    public String index( Model model){
-        MessageBean msg = new MessageBean("测试标题", "测试内容", "额外信息，只对管理员显示");
-        model.addAttribute("msg", msg);
+    @RequestMapping( value = "/" )
+    public String index( Model model ) {
+        MessageBean msg = new MessageBean( "测试标题", "测试内容", "额外信息，只对管理员显示" );
+        model.addAttribute( "msg", msg );
         return "recommand";
     }
 
-    @RequestMapping(value = "/report")
-    public String report( Model model){
+    @RequestMapping( value = "/report" )
+    public String report( Model model ) {
         return "report";
     }
 

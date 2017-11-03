@@ -15,23 +15,20 @@ import java.util.Collection;
 public class SecurityUser extends User implements UserDetails {
     private static final long serialVersionUID = 1L;
     public SecurityUser(User user) {
-        if(user != null)
-        {
+        if(user != null){
             this.setId(user.getId());
+            this.setRole(user.getRole());
             this.setUsername( user.getUsername());
             this.setEmail(user.getEmail());
             this.setPassword(user.getPassword());
-            this.setDob(user.getDob());
-            this.setRole(user.getRole());
         }
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
         Collection<GrantedAuthority > authorities = new ArrayList<>();
         Role role = this.getRole();
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.getName());
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.getRoleName());
         authorities.add(authority);
         return authorities;
     }

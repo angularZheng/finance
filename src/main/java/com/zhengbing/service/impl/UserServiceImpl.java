@@ -19,6 +19,11 @@ public class UserServiceImpl implements IUserService{
     UserRepository userRepository;
 
     @Override
+    public User save( User user ) {
+        return userRepository.save( user );
+    }
+
+    @Override
     public User findByUsername(String username){
         return userRepository.findByUsername( username );
     }
@@ -26,6 +31,11 @@ public class UserServiceImpl implements IUserService{
     @Override
     public User update(User user){
         return userRepository.save( user );
+    }
+
+    @Override
+    public User findByOpenId( String openId ) {
+        return userRepository.findByOpenId( openId );
     }
 
 }

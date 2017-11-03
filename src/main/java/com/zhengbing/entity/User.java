@@ -1,6 +1,7 @@
 package com.zhengbing.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.zhengbing.common.BaseEntity;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,44 +18,80 @@ import java.util.List;
  */
 @Data
 @Entity
-@Table(name = "fc_user")
-public class User{
+@Table( name = "fc_user" )
+public class User extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private Integer id;
+    /**
+     * 用户名
+     */
+    @Column( name = "user_name", length = 50 )
+    private String username;
 
-    @Column(name = "user_name", length = 120)
-    private String username; //用户名
+    /**
+     * 用户密码
+     */
+    @Column( name = "password", length = 120 )
+    private String password;
 
-    @Column(name = "head_icon",length = 120)
-    private String headIcon;
+    @Column(name = "nickname",length = 50)
+    private String nickname;
 
-    @Column(name = "email", length = 50)
-    private String email;//用户邮箱
+    /**
+     *  用户头像
+     */
+    @Column( name = "head_img_url", length = 120 )
+    private String headImgUrl;
 
-    @Column(name = "password", length = 120)
-    private String password;//用户密码
+    /**
+     *  用户性别
+     */
+    @Column( name = "sex", length = 1 )
+    private Integer sex;
 
-    @Column(name = "salt")
-    private String salt;
+    /**
+     * 用户邮箱
+     */
+    @Column( name = "email", length = 50 )
+    private String email;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "dob", length = 10)
-    private Date dob;//时间
-
-    @Column(name = "open_id", length = 32)
+    /**
+     * 第三方 openid
+     */
+    @Column( name = "open_id", length = 32 )
     private String openId;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id", nullable = false)
+    /**
+     * 所属城市
+     */
+    @Column( name = "city", length = 32 )
+    private String city;
+
+    /**
+     * 所属省份
+     */
+    @Column( name = "province", length = 32 )
+    private String province;
+
+    /**
+     * 所属国家
+     */
+    @Column( name = "country", length = 50 )
+    private String country;
+
+    /**
+     * 角色
+     */
+    @ManyToOne( fetch = FetchType.EAGER )
+    @JoinColumn( name = "role_id", nullable = false )
     private Role role;
 
+    /**
+     * 会员等级
+     */
     @OneToOne( fetch = FetchType.EAGER )
-    @JoinColumn( name = "vip_level ")
+    @JoinColumn( name = "vip_level " )
     private UserVipLevel vipLevel;
+
 
 }
 

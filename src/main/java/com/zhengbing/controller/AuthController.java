@@ -1,12 +1,15 @@
 package com.zhengbing.controller;
 
-import com.zhengbing.entity.WxUserInfo;
+import com.zhengbing.entity.User;
+import com.zhengbing.service.IUserService;
 import com.zhengbing.util.AuthUtil;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,48 +25,71 @@ import java.net.URLEncoder;
 @Controller
 public class AuthController {
 
-    Logger logger = LoggerFactory.getLogger(AuthController.class);
+    Logger logger = LoggerFactory.getLogger( AuthController.class );
 
-    @RequestMapping("wxLogin")
-    public void wxLogin(HttpServletResponse response) throws IOException{
+    @Autowired
+    private IUserService userService;
+
+    /**
+     * 微信登陆授权
+     *
+     * @param response
+     *
+     * @throws IOException
+     */
+    @RequestMapping( "wxLogin" )
+    public void wxLogin( HttpServletResponse response ) throws IOException {
         String backUrl = "http://ebf94a64.ngrok.io/callback";
         String requestUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect";
-        requestUrl = requestUrl.replace("APPID",AuthUtil.APPID);
-        requestUrl = requestUrl.replace("REDIRECT_URI",URLEncoder.encode(backUrl,"UTF-8"));
-        requestUrl = requestUrl.replace("SCOPE","snsapi_userinfo");
-        response.sendRedirect(requestUrl);
+        requestUrl = requestUrl.replace( "APPID", AuthUtil.APPID );
+        requestUrl = requestUrl.replace( "REDIRECT_URI", URLEncoder.encode( backUrl, "UTF-8" ) );
+        requestUrl = requestUrl.replace( "SCOPE", "snsapi_userinfo" );
+        response.sendRedirect( requestUrl );
     }
 
-    @RequestMapping(value = "callback")
-    public String callBack(HttpServletRequest request, Model model) throws IOException{
+    /**
+     * 微信授权登陆回调函数
+     *
+     * @param request
+     * @param model
+     *
+     * @return
+     *
+     * @throws IOException
+     */
+    @RequestMapping( value = "callback" )
+    public String callBack( HttpServletRequest request, Model model ) throws IOException {
 
         String code = request.getParameter( "code" );
-        System.out.println(code);
+        // 根据微信回调返回的code 获取 openid 和access_token
         String backUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
-        backUrl = backUrl.replace("APPID" , AuthUtil.APPID);
-        backUrl = backUrl.replace("SECRET" , AuthUtil.APPSECRET);
-        backUrl = backUrl.replace("CODE", code);
-        JSONObject jsonObject = AuthUtil.doGetJson(backUrl);
+        backUrl = backUrl.replace( "APPID", AuthUtil.APPID );
+        backUrl = backUrl.replace( "SECRET", AuthUtil.APPSECRET );
+        backUrl = backUrl.replace( "CODE", code );
+        JSONObject jsonObject = AuthUtil.doGetJson( backUrl );
 
-        String openid = jsonObject.getString("openid");
-        String token = jsonObject.getString("access_token");
+        String openid = jsonObject.getString( "openid" );
+        String token = jsonObject.getString( "access_token" );
         String infoUrl = "https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
-        infoUrl = infoUrl.replace("ACCESS_TOKEN",token);
-        infoUrl = infoUrl.replace("OPENID",openid);
-        JSONObject userinfo = AuthUtil.doGetJson(infoUrl);
-
-        WxUserInfo wxuser = new WxUserInfo();
-        wxuser.setCity(userinfo.getString("city" ));
-        wxuser.setProvince(userinfo.getString("province" ));
-        wxuser.setCountry(userinfo.getString("country" ));
-        wxuser.setSex(userinfo.getInt("sex" ));
-        wxuser.setOpenid(userinfo.getString("openid" ));
-        wxuser.setNickname(userinfo.getString("nickname" ));
-        wxuser.setLanguage(userinfo.getString("language" ));
-        wxuser.setHeadimgurl(userinfo.getString("headimgurl" ));
-        System.out.println(wxuser);
-        model.addAttribute("user",wxuser);
+        infoUrl = infoUrl.replace( "ACCESS_TOKEN", token );
+        infoUrl = infoUrl.replace( "OPENID", openid );
+        JSONObject userinfo = AuthUtil.doGetJson( infoUrl );
+        User user = null;
+        if ( !StringUtils.isEmpty( openid ) ) {
+            user = userService.findByOpenId( openid );
+        } else {
+            user = new User();
+            user.setCity( userinfo.getString( "city" ) );
+            user.setProvince( userinfo.getString( "province" ) );
+            user.setCountry( userinfo.getString( "country" ) );
+            user.setSex( userinfo.getInt( "sex" ) );
+            user.setOpenId( userinfo.getString( "openid" ) );
+            user.setNickname( userinfo.getString( "nickname" ) );
+//          user.setLanguage(userinfo.getString("language" ));
+            user.setHeadImgUrl( userinfo.getString( "headimgurl" ) );
+            user = userService.save( user );
+        }
+        model.addAttribute( "user", user );
         return "index";
     }
-
 }

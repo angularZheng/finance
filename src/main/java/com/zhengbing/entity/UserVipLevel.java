@@ -11,23 +11,23 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
-@Table(name = "fc_user_vip_level")
+@Table( name = "fc_user_vip_level" )
 public class UserVipLevel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    @Column( name = "id", unique = true, nullable = false )
     private Integer id;
 
     @NotNull
-    @Column(name = "level_name",length = 5)
+    @Column( name = "level_name", length = 5 )
     private String levelName;
 
     @NotNull
-    @Column(name = "min_amount",columnDefinition = "decimal(14,2)")
+    @Column( name = "min_amount", columnDefinition = "decimal(14,2)" )
     private Integer minAmount;
 
     @NotNull
-    @Column(name = "max_amount",columnDefinition = "decimal(14,2)")
+    @Column( name = "max_amount", columnDefinition = "decimal(14,2)" )
     private Integer maxAmount;
 }

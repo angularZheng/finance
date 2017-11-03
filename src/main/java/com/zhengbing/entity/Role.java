@@ -1,5 +1,6 @@
 package com.zhengbing.entity;
 
+import com.zhengbing.common.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,15 +11,19 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "fc_role")
-public class Role{
+@Table( name = "fc_role" )
+public class Role extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column (name="id",length=10)
-    private Integer id;
+    /**
+     * 角色名称
+     */
+    @Column( name = "role_name", length = 50 )
+    private String roleName;
 
-    @Column(name="name",length=100)
-    private String name;//角色名称
+    /**
+     * 角色描述
+     */
+    @Column( name = "description", length = 100 )
+    private String description;
 
 }

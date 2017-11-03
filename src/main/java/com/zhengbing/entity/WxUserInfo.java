@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by zhengbing on 2017/10/19.
  */
 @Data
-public class WxUserInfo implements Serializable{
+public class WxUserInfo implements Serializable {
 
     /**
      *
