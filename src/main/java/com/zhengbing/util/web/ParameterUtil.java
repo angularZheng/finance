@@ -1,4 +1,4 @@
-package com.zhengbing.util;
+package com.zhengbing.util.web;
 
 import javax.servlet.http.HttpServletRequest;
 

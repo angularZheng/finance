@@ -28,7 +28,7 @@ public class Order extends BaseEntity {
     private String description;
 
     @ManyToOne( fetch = FetchType.EAGER )
-    @JoinColumn( name = "user_id", nullable = false ,insertable = false,updatable = false)
+    @JoinColumn( name = "user_id", insertable = false,updatable = false)
     private User user;
 
 

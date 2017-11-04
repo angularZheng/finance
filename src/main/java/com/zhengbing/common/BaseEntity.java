@@ -19,7 +19,7 @@ public class BaseEntity {
     @Column( name = "id", unique = true, nullable = false )
     private Integer id;
 
-    @Column( name = "status", columnDefinition = "default 0" )
+    @Column( name = "status")
     private String status;
 
     @Column( name = "create_by", length = 50 )

@@ -10,12 +10,12 @@ import java.util.GregorianCalendar;
 public class DateUtils {
 
     /**
-     * 指定日期添加指定月之后的日期
+     * 指定日期添加指定月
      *
      * @param date
      * @param num
      *
-     * @return
+     * @return 计算之后的日期
      */
     public static Date addMonth( Date date, int num ) {
         GregorianCalendar now = new GregorianCalendar();

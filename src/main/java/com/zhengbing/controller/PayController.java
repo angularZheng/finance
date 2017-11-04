@@ -5,19 +5,15 @@ import com.zhengbing.common.pay.WXPay;
 import com.zhengbing.common.pay.WXPayUtil;
 import com.zhengbing.entity.Order;
 import com.zhengbing.service.IOrderService;
-import com.zhengbing.util.ParameterUtil;
+import com.zhengbing.util.web.ParameterUtil;
 import com.zhengbing.util.StringUtil;
-import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.thymeleaf.util.DateUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.math.BigDecimal;
 import java.util.*;
 
 /**
