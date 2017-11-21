@@ -48,7 +48,7 @@ public class PayController {
         data.put( "fee_type", "CNY" );
         data.put( "total_fee", order.getAmount()+"" );
         data.put( "spbill_create_ip", request.getLocalAddr() );
-        data.put( "notify_url", "http://www.y-create.cn/wxpay/callback" );
+        data.put( "notify_url", "http://financetx.duapp.com/wxpay/callback" );
         data.put( "trade_type", "NATIVE" );  // 此处指定为扫码支付
         data.put( "product_id", "12" );
 

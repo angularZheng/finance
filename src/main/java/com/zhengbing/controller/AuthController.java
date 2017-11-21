@@ -39,7 +39,7 @@ public class AuthController {
      */
     @RequestMapping( "wxLogin" )
     public void wxLogin( HttpServletResponse response ) throws IOException {
-        String backUrl = "http://ebf94a64.ngrok.io/callback";
+        String backUrl = "http://financetx.duapp.com";
         String requestUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect";
         requestUrl = requestUrl.replace( "APPID", AuthUtil.APPID );
         requestUrl = requestUrl.replace( "REDIRECT_URI", URLEncoder.encode( backUrl, "UTF-8" ) );
