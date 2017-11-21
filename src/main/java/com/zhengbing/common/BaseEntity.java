@@ -1,7 +1,5 @@
 package com.zhengbing.common;
 
-import groovy.transform.EqualsAndHashCode;
-import groovy.transform.ToString;
 import lombok.Data;
 
 import javax.persistence.*;

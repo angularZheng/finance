@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @Table( name = "fc_order" )
 public class Order extends BaseEntity {
 
-    @Column(name = "user_id",length = 11,nullable = false)
+    @Column( name = "user_id", length = 11, nullable = false )
     private Integer userId;
 
     @Column( name = "order_no", length = 50 )
@@ -24,11 +24,11 @@ public class Order extends BaseEntity {
     @Column( name = "amount", columnDefinition = "decimal(14,2)" )
     private double amount;
 
-    @Column(name = "description",length = 100)
+    @Column( name = "description", length = 100 )
     private String description;
 
     @ManyToOne( fetch = FetchType.EAGER )
-    @JoinColumn( name = "user_id", insertable = false,updatable = false)
+    @JoinColumn( name = "user_id", insertable = false, updatable = false )
     private User user;
 
 
