@@ -31,7 +31,8 @@ public class PayController {
 
         // 生成应用内订单
         Order order = new Order();
-        order.setUserId( ParameterUtil.getIntParameter( request,"userId" ) );
+//        order.setUserId( ParameterUtil.getIntParameter( request,"userId" ) );
+        order.setUserId( 2 );
         order.setOrderNo( StringUtil.ganerateOrderNo() );
         order.setAmount( ParameterUtil.getDoubleParameter( request,"amount" ) );
         order.setDescription( ParameterUtil.getParameter( request,"description" ));
@@ -49,7 +50,7 @@ public class PayController {
         data.put( "total_fee", order.getAmount()+"" );
         data.put( "spbill_create_ip", request.getLocalAddr() );
         data.put( "notify_url", "http://financetx.duapp.com/wxpay/callback" );
-        data.put( "trade_type", "NATIVE" );  // 此处指定为扫码支付
+        data.put( "trade_type", "JSAPI" );  // 此处指定为公众号支付
         data.put( "product_id", "12" );
 
         try {
