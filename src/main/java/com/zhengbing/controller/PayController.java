@@ -4,7 +4,10 @@ import com.zhengbing.common.pay.MyConfig;
 import com.zhengbing.common.pay.WXPay;
 import com.zhengbing.common.pay.WXPayUtil;
 import com.zhengbing.entity.Order;
+import com.zhengbing.entity.User;
 import com.zhengbing.service.IOrderService;
+import com.zhengbing.service.IUserService;
+import com.zhengbing.util.Constants;
 import com.zhengbing.util.web.ParameterUtil;
 import com.zhengbing.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +28,9 @@ public class PayController {
 
     @Autowired
     private IOrderService orderService;
+
+    @Autowired
+    private IUserService userService;
 
     @RequestMapping( value = "pay" )
     public void wxpay( HttpServletRequest request) throws Exception {
@@ -69,11 +75,16 @@ public class PayController {
             if ( map.get( "result_code" ).toString().equalsIgnoreCase( "SUCCESS" ) ) {
                 String orderNo = map.get( "out_trade_no" );
                 //这里写成功后的业务逻辑
+                Order order = orderService.findByOrderNo(orderNo);
                 // 修改订单状态
+                order.setStatus(Constants.ORDER_STATUS_PAYED);
                 // 修改用户角色
-                //orderService.updateConfirm(orderId);
-                callback.put( "return_code", "" );
-                callback.put( "return_msg", "" );
+                User user = userService.findById(order.getUserId());
+                user.setVipLevel(Constants.VIP_FEE);
+
+                // 添加用户支付记录
+                callback.put( "return_code", "200" );
+                callback.put( "return_msg", "支付成功" );
             }
             return WXPayUtil.mapToXml( callback );
         } catch ( Exception e ) {

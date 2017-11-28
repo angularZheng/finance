@@ -34,6 +34,11 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
+    public User findById(Integer id) {
+        return userRepository.findOne(id);
+    }
+
+    @Override
     public User findByOpenId( String openId ) {
         return userRepository.findByOpenId( openId );
     }

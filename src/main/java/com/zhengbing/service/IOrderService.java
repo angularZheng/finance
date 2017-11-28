@@ -8,4 +8,8 @@ import com.zhengbing.entity.Order;
 public interface IOrderService {
 
     Order save(Order order);
+
+    Order update(Order order);
+
+    Order findByOrderNo(String orderNo);
 }

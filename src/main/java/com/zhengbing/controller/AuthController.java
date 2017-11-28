@@ -5,6 +5,7 @@ import com.zhengbing.entity.User;
 import com.zhengbing.service.IRoleService;
 import com.zhengbing.service.IUserService;
 import com.zhengbing.util.AuthUtil;
+import com.zhengbing.util.Constants;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,7 +76,6 @@ public class AuthController {
         infoUrl = infoUrl.replace("ACCESS_TOKEN", token);
         infoUrl = infoUrl.replace("OPENID", openid);
         JSONObject userinfo = AuthUtil.doGetJson(infoUrl);
-//        Role role = roleService.findRoleById(1);
         User user = null;
         if (!StringUtils.isEmpty(openid)) {
             if (null == userService.findByOpenId(openid)) {
@@ -86,17 +86,18 @@ public class AuthController {
                 user.setSex(userinfo.getInt("sex"));
                 user.setOpenId(userinfo.getString("openid"));
                 user.setNickname(userinfo.getString("nickname"));
-//          user.setLanguage(userinfo.getString("language" ));
+//              user.setLanguage(userinfo.getString("language" ));
                 user.setHeadImgUrl(userinfo.getString("headimgurl"));
-                user.setVipLevel(0);
-                user.setRoleId(1);
+                user.setVipLevel(Constants.VIP_NORMAL);
+                user.setRoleId(Constants.ROLE_VIP);
+
                 user = userService.save(user);
             } else {
                 user = userService.findByOpenId(openid);
             }
         }
         model.addAttribute("user", user);
-        if (user.getVipLevel() == 1) {
+        if (user.getVipLevel() == Constants.VIP_FEE) {
             return "vip";
         } else {
             return "normal";

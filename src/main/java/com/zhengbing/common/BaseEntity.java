@@ -18,7 +18,7 @@ public class BaseEntity {
     private Integer id;
 
     @Column( name = "status")
-    private String status;
+    private Integer status;
 
     @Column( name = "create_by", length = 50 )
     private String createBy;

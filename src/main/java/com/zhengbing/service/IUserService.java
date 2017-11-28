@@ -17,6 +17,21 @@ public interface IUserService {
     User save(User user);
 
     /**
+     * 修改用户信息
+     *
+     * @param user
+     * @return
+     */
+    User update(User user);
+
+    /**
+     * 根据用户id查找用户
+     *
+     * @param id
+     * @return
+     */
+    User findById(Integer id);
+    /**
      *
      * 根据用户名查找用户
      *
@@ -34,11 +49,5 @@ public interface IUserService {
      */
     User findByOpenId(String openId);
 
-    /**
-     * 修改用户信息
-     *
-     * @param user
-     * @return
-     */
-    User update(User user);
+
 }

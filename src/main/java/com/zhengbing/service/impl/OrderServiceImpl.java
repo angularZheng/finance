@@ -17,6 +17,16 @@ public class OrderServiceImpl implements IOrderService {
 
     @Override
     public Order save(Order order) {
-        return orderRepository.save( order );
+        return orderRepository.save(order);
+    }
+
+    @Override
+    public Order update(Order order) {
+        return orderRepository.save(order);
+    }
+
+    @Override
+    public Order findByOrderNo(String orderNo) {
+        return orderRepository.findByOrderNo(orderNo);
     }
 }
