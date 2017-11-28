@@ -1,6 +1,8 @@
 package com.zhengbing.controller;
 
+import com.zhengbing.entity.Role;
 import com.zhengbing.entity.User;
+import com.zhengbing.service.IRoleService;
 import com.zhengbing.service.IUserService;
 import com.zhengbing.util.AuthUtil;
 import net.sf.json.JSONObject;
@@ -19,32 +21,33 @@ import java.net.URLEncoder;
 
 /**
  * 微信授权认证controller
- *
+ * <p>
  * Created by zhengbing on 2017/10/18.
  */
 @Controller
 public class AuthController {
 
-    Logger logger = LoggerFactory.getLogger( AuthController.class );
+    Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     @Autowired
     private IUserService userService;
 
+    @Autowired
+    private IRoleService roleService;
     /**
      * 微信登陆授权
      *
      * @param response
-     *
      * @throws IOException
      */
-    @RequestMapping( "wxLogin" )
-    public void wxLogin( HttpServletResponse response ) throws IOException {
-        String backUrl = "http://ebf94a64.ngrok.io/callback";
+    @RequestMapping("wxLogin")
+    public void wxLogin(HttpServletResponse response) throws IOException {
+        String backUrl = "http://afa46dbf.ngrok.io/callback";
         String requestUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect";
-        requestUrl = requestUrl.replace( "APPID", AuthUtil.APPID );
-        requestUrl = requestUrl.replace( "REDIRECT_URI", URLEncoder.encode( backUrl, "UTF-8" ) );
-        requestUrl = requestUrl.replace( "SCOPE", "snsapi_userinfo" );
-        response.sendRedirect( requestUrl );
+        requestUrl = requestUrl.replace("APPID", AuthUtil.APPID);
+        requestUrl = requestUrl.replace("REDIRECT_URI", URLEncoder.encode(backUrl, "UTF-8"));
+        requestUrl = requestUrl.replace("SCOPE", "snsapi_userinfo");
+        response.sendRedirect(requestUrl);
     }
 
     /**
@@ -52,44 +55,51 @@ public class AuthController {
      *
      * @param request
      * @param model
-     *
      * @return
-     *
      * @throws IOException
      */
-    @RequestMapping( value = "callback" )
-    public String callBack( HttpServletRequest request, Model model ) throws IOException {
+    @RequestMapping(value = "callback")
+    public String callBack(HttpServletRequest request, Model model) throws IOException {
 
-        String code = request.getParameter( "code" );
+        String code = request.getParameter("code");
         // 根据微信回调返回的code 获取 openid 和access_token
         String backUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
-        backUrl = backUrl.replace( "APPID", AuthUtil.APPID );
-        backUrl = backUrl.replace( "SECRET", AuthUtil.APPSECRET );
-        backUrl = backUrl.replace( "CODE", code );
-        JSONObject jsonObject = AuthUtil.doGetJson( backUrl );
+        backUrl = backUrl.replace("APPID", AuthUtil.APPID);
+        backUrl = backUrl.replace("SECRET", AuthUtil.APPSECRET);
+        backUrl = backUrl.replace("CODE", code);
+        JSONObject jsonObject = AuthUtil.doGetJson(backUrl);
 
-        String openid = jsonObject.getString( "openid" );
-        String token = jsonObject.getString( "access_token" );
+        String openid = jsonObject.getString("openid");
+        String token = jsonObject.getString("access_token");
         String infoUrl = "https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
-        infoUrl = infoUrl.replace( "ACCESS_TOKEN", token );
-        infoUrl = infoUrl.replace( "OPENID", openid );
-        JSONObject userinfo = AuthUtil.doGetJson( infoUrl );
+        infoUrl = infoUrl.replace("ACCESS_TOKEN", token);
+        infoUrl = infoUrl.replace("OPENID", openid);
+        JSONObject userinfo = AuthUtil.doGetJson(infoUrl);
+//        Role role = roleService.findRoleById(1);
         User user = null;
-        if ( !StringUtils.isEmpty( openid ) ) {
-            user = userService.findByOpenId( openid );
-        } else {
-            user = new User();
-            user.setCity( userinfo.getString( "city" ) );
-            user.setProvince( userinfo.getString( "province" ) );
-            user.setCountry( userinfo.getString( "country" ) );
-            user.setSex( userinfo.getInt( "sex" ) );
-            user.setOpenId( userinfo.getString( "openid" ) );
-            user.setNickname( userinfo.getString( "nickname" ) );
+        if (!StringUtils.isEmpty(openid)) {
+            if (null == userService.findByOpenId(openid)) {
+                user = new User();
+                user.setCity(userinfo.getString("city"));
+                user.setProvince(userinfo.getString("province"));
+                user.setCountry(userinfo.getString("country"));
+                user.setSex(userinfo.getInt("sex"));
+                user.setOpenId(userinfo.getString("openid"));
+                user.setNickname(userinfo.getString("nickname"));
 //          user.setLanguage(userinfo.getString("language" ));
-            user.setHeadImgUrl( userinfo.getString( "headimgurl" ) );
-            user = userService.save( user );
+                user.setHeadImgUrl(userinfo.getString("headimgurl"));
+                user.setVipLevel(0);
+                user.setRoleId(1);
+                user = userService.save(user);
+            } else {
+                user = userService.findByOpenId(openid);
+            }
         }
-        model.addAttribute( "user", user );
-        return "index";
+        model.addAttribute("user", user);
+        if (user.getVipLevel() == 1) {
+            return "vip";
+        } else {
+            return "normal";
+        }
     }
 }

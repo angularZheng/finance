@@ -13,12 +13,12 @@ public class MyConfig extends WXPayConfig {
     private byte[] certData;
 
     public MyConfig() throws Exception {
-        String certPath = "/path/to/apiclient_cert.p12";
-        File file = new File(certPath);
-        InputStream certStream = new FileInputStream(file);
-        this.certData = new byte[(int) file.length()];
-        certStream.read(this.certData);
-        certStream.close();
+//        String certPath = "/path/to/apiclient_cert.p12";
+//        File file = new File(certPath);
+//        InputStream certStream = new FileInputStream(file);
+//        this.certData = new byte[(int) file.length()];
+//        certStream.read(this.certData);
+//        certStream.close();
     }
 
     public String getAppID() {

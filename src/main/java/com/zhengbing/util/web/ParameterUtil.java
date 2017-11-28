@@ -77,7 +77,7 @@ public class ParameterUtil {
 	 * @return
 	 */
 	public static double getDoubleParameter( HttpServletRequest request, String paramName ) {
-		return getDoubleParameter( request, paramName, 0.00d );
+		return getDoubleParameter( request, paramName, 0.01d );
 	}
 
 	/**
@@ -89,11 +89,15 @@ public class ParameterUtil {
 	 * @return
 	 */
 	public static double getDoubleParameter( HttpServletRequest request, String paramName, double defaultValue ) {
-		double paramValue = Double.parseDouble( request.getParameter( paramName ) );
-		if( paramValue > 0.00d ) {
-			return paramValue;
+		if (null == request.getParameter(paramName) ){
+			return defaultValue;
+		}else {
+			double paramValue = Double.parseDouble(request.getParameter(paramName));
+			if( paramValue > 0.01d ) {
+				return paramValue;
+			}
+			return defaultValue;
 		}
-		return defaultValue;
 	}
 
 	/**
