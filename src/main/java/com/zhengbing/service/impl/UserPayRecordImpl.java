@@ -3,6 +3,7 @@ package com.zhengbing.service.impl;
 import com.zhengbing.entity.UserPayRecord;
 import com.zhengbing.repository.UserPayRecordRepository;
 import com.zhengbing.service.IUserPayRecord;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Service("userPayRecordService")
 public class UserPayRecordImpl implements IUserPayRecord {
 
+    @Autowired
     private UserPayRecordRepository userPayRecordReponsitory;
 
     @Override
