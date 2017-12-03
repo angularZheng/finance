@@ -1,0 +1,99 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>订单确认</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <meta name="description" content="describle" />
+
+    <link rel="stylesheet" href="../static/lib/weui.css" />
+    <link rel="stylesheet" href="../static/css/jquery-weui.css" />
+    <script src="../static/lib/jquery-2.1.4.js"></script>
+    <script src="../static/js/jquery-weui.js"></script>
+    <style>
+        .placeholder {
+            margin: 0px;
+            padding: 0 5px;
+            /*background-color: #ebebeb;*/
+            height: 2.5em;
+            line-height: 2.3em;
+            text-align: center;
+            color: #cfcfcf;
+        }
+    </style>
+</head>
+<!--<body =ontouchstart>-->
+<body>
+
+<div class="weui-flex">
+    <div class="weui-flex__item" style="background-color: rgb(173,0,0);">
+        <div class="placeholder">
+            <label style="color: white">订单确认</label>
+        </div>
+    </div>
+</div>
+
+<div class="weui-form-preview">
+    <div class="weui-form-preview__hd">
+        <label class="weui-form-preview__label">付款金额</label>
+        <em class="weui-form-preview__value"><p th:text="${order.amount}"></p> </em>
+    </div>
+    <div class="weui-form-preview__bd">
+        <div class="weui-form-preview__item">
+            <label class="weui-form-preview__label">订单编号</label>
+            <span class="weui-form-preview__value"><p th:text="${order.orderNo}"></p> </span>
+        </div>
+        <div class="weui-form-preview__item">
+            <label class="weui-form-preview__label">商品</label>
+            <span class="weui-form-preview__value"><p th:text="${order.productName}"></p> </span>
+        </div>
+    </div>
+    <div class="weui-form-preview__ft">
+        <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="/wxPay/pay">确认支付</button>
+    </div>
+</div>
+<script>
+    //TODO 改为post方式，参数不带到url中，防止微信支付页面未注册
+    function weixinPayOrder(orderId){
+        $.ajax({
+            url:'wxpay/pay',
+            type:'GET',
+            dataType: 'json',
+            success:function(data){
+                if(data.errorMsg=='OK'){
+                    callpay(data);
+                } else{
+                    $.alert(data.errorMsg);
+                }
+            },
+            error:function(xhr){
+                $.alert('操作失败');
+            }
+        });
+    }
+    function callpay(data) {
+        WeixinJSBridge.invoke('getBrandWCPayRequest', {
+            "appId" : data.appId,
+            "timeStamp" : data.timeStamp,
+            "nonceStr" : data.nonceStr,
+            "package" : data.packageStr,
+            "signType" : "MD5",
+            "paySign" : data.sign
+        }, function(res) {
+            WeixinJSBridge.log(res.err_msg);
+            if (res.err_msg == "get_brand_wcpay_request:ok") {
+                $.alert("支付成功!",function(){
+                    location.href='<%=basePath%>protal/orders/<%=session.getAttribute("systemCode")%>';
+                });
+            } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
+                $.alert("用户取消支付！");
+            } else {
+                $.alert("支付失败！");
+            }
+        })
+    }
+
+</script>
+</body>
+</html>

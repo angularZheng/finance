@@ -1,4 +1,4 @@
-package com.zhengbing.common.pay;
+package com.zhengbing.util.pay;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

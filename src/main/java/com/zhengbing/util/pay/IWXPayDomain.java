@@ -1,4 +1,4 @@
-package com.zhengbing.common.pay;
+package com.zhengbing.util.pay;
 
 /**
  * 域名管理，实现主备域名自动切换

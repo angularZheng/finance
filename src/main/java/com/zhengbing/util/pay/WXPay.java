@@ -1,4 +1,4 @@
-package com.zhengbing.common.pay;
+package com.zhengbing.util.pay;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -693,4 +693,4 @@ public class WXPay {
     }
 
 
-}
+} // end class

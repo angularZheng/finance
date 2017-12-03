@@ -19,9 +19,4 @@ public class IndexController {
         return "vip";
     }
 
-    @RequestMapping( value = "/report" )
-    public String report( Model model ) {
-        return "report";
-    }
-
 }

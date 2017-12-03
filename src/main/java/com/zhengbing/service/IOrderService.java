@@ -12,4 +12,6 @@ public interface IOrderService {
     Order update(Order order);
 
     Order findByOrderNo(String orderNo);
+
+    Order findById(Integer id);
 }

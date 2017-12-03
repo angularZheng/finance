@@ -3,6 +3,7 @@ package com.zhengbing.entity;
 import com.zhengbing.common.BaseEntity;
 import lombok.Data;
 import org.hamcrest.Description;
+import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -21,8 +22,11 @@ public class Order extends BaseEntity {
     @Column( name = "order_no", length = 50 )
     private String orderNo;
 
+    @Column(name = "product_name",length = 50)
+    private String productName;
+
     @Column( name = "amount", columnDefinition = "decimal(14,2)" )
-    private double amount;
+    private BigDecimal amount;
 
     @Column( name = "description", length = 100 )
     private String description;

@@ -1,4 +1,4 @@
-package com.zhengbing.common.pay;
+package com.zhengbing.util.pay;
 
 /**
  * 常量

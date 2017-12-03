@@ -4,6 +4,8 @@ import com.zhengbing.entity.User;
 import com.zhengbing.repository.UserRepository;
 import com.zhengbing.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -41,6 +43,11 @@ public class UserServiceImpl implements IUserService{
     @Override
     public User findByOpenId( String openId ) {
         return userRepository.findByOpenId( openId );
+    }
+
+    @Override
+    public Page<User> findPageable(Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 
 }

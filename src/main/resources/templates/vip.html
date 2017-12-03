@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>首页</title>
     <meta charset="utf-8" />
@@ -12,8 +11,9 @@
     <link rel="stylesheet" href="../static/lib/weui.css" />
     <link rel="stylesheet" href="../static/css/jquery-weui.css" />
     <!--<link rel="stylesheet" href="css/demos.css">-->
-
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script src="../static/lib/jquery-2.1.4.js"></script>
+    <!--<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>-->
+    <script src="../static/js/jquery-weui.js"></script>
     <script>
 
     </script>
@@ -70,7 +70,7 @@
             height: 7.0em;
         }
     </style>
-    <script src="../static/js/jquery-weui.js"></script>
+
 </head>
 <!--<body =ontouchstart>-->
 <body>
@@ -98,18 +98,36 @@
 <div class="weui-panel" style="margin-top:0;border: 1px solid rgb(173,0,0);">
     <div class="weui-flex" style="margin-top:0.025em">
         <div class="weui-flex__item"><div id="d1" style="text-align: center"><img src="../static/images/diamond.png" />舆情分析</div></div>
-        <div class="weui-flex__item"><div id="d2" style="text-align: center"><img src="../static/images/diamond.png" />行业报告</div></div>
+        <div class="weui-flex__item"><div id="d2" style="text-align: center"><a href="/report"><img src="../static/images/diamond.png" />行业报告</a></div></div>
         <div class="weui-flex__item"><div id="d3" style="text-align: center"><img src="../static/images/diamond.png" />智能预测</div></div>
     </div>
     <div class="weui-flex" style="margin-top:0.025em">
         <div class="weui-flex__item"><div id="d1" style="text-align: center"><img src="../static/images/diamond.png" />精准内参</div></div>
-        <div class="weui-flex__item"><div id="d2" style="text-align: center"><img src="../static/images/diamond.png" />牛股推荐</div></div>
+        <div class="weui-flex__item"><div id="d2" style="text-align: center"><a href="/recommand"><img src="../static/images/diamond.png" />牛股推荐</a></div></div>
         <div class="weui-flex__item"><div id="d3" style="text-align: center"><img src="../static/images/diamond.png" />专家点评</div></div>
     </div>
     <div class="weui-flex" style="text-align: center;margin-top: 0.7em;" >
-        <div class="weui-flex__item"><a href="/wxpay/pay" class="weui-btn weui-btn_warn">续费超级会员</a></div>
+        <div class="weui-flex__item"><a href="#" onclick="order()" class="weui-btn weui-btn_warn">续费超级会员</a></div>
     </div>
 </div>
 
 </body>
+<script>
+    function order(){
+        $.actions({
+            actions: [{
+                text: "续费三个月",
+                onClick: function() {
+                    window.location.href="/order/1";
+                }
+            },{
+                text: "续费六个月",
+                onClick: function() {
+                    window.location.href="/order/2";
+                }
+            }]
+        });
+    }
+
+</script>
 </html>

@@ -33,6 +33,9 @@ public class User extends BaseEntity {
     @Column(name = "password", length = 120)
     private String password;
 
+    /**
+     * 用户昵称
+     */
     @Column(name = "nickname", length = 50)
     private String nickname;
 
@@ -63,7 +66,7 @@ public class User extends BaseEntity {
     /**
      * 所属城市
      */
-    @Column(name = "city", length = 32)
+    @Column(name = "city", length = 80)
     private String city;
 
     /**
@@ -94,6 +97,11 @@ public class User extends BaseEntity {
     @Column(name = "vip_level")
     private Integer vipLevel;
 
+    /**
+     * 有效期至
+     */
+    @Column(name = "expire_date")
+    private Date expireDate;
 
 }
 

@@ -1,4 +1,4 @@
-package com.zhengbing.common.pay;
+package com.zhengbing.util.pay;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

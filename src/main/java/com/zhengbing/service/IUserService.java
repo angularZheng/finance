@@ -1,6 +1,9 @@
 package com.zhengbing.service;
 
 import com.zhengbing.entity.User;
+import com.zhengbing.entity.UserPayRecord;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * Created by zhengbing on 2017/10/19.
@@ -48,6 +51,8 @@ public interface IUserService {
      * @return
      */
     User findByOpenId(String openId);
+
+    Page<User> findPageable(Pageable pageable);
 
 
 }

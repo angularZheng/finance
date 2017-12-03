@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>首页</title>
     <meta charset="utf-8" />
@@ -10,7 +10,6 @@
 
     <link rel="stylesheet" href="../static/lib/weui.css" />
     <link rel="stylesheet" href="../static/css/jquery-weui.css" />
-    <!--<link rel="stylesheet" href="css/demos.css">-->
     <style>
         .placeholder {
             margin: 0px;
@@ -78,10 +77,11 @@
 </div>
 
 <div class="weui-flex" style="margin-top:0;border: 1px solid rgb(173,0,0);">
-    <div class="weui-flex__item">
+    <div class="weui-flex__item">,
         <div class="weui-flex">
             <div class="weui-flex__item">
                 <div class="placeholder">
+                    <input type="hidden" name="userid" id="userid" th:value="${user.id}" />
                     <label style="color: red">超级会员专享特权</label>
                 </div>
             </div>
