@@ -32,14 +32,14 @@ public class OrderController {
         Product product = productService.findById(productId);
         // 生成应用内订单
         Order order = new Order();
-//        order.setUserId( ParameterUtil.getIntParameter( request,"userId" ) );
+        // order.setUserId( ParameterUtil.getIntParameter( request,"userId" ) );
         order.setUserId( 2 );
-        order.setProductName(product.getProductName());
+        order.setProductId(product.getId());
         order.setOrderNo( StringUtil.ganerateOrderNo() );
         order.setAmount( product.getPrice());
         order.setDescription( "");
         order = orderService.save( order );
         model.addAttribute("order",order);
-        return "show_order";
+        return "order_confirm";
     }
 }

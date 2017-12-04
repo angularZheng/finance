@@ -19,11 +19,11 @@ public class Order extends BaseEntity {
     @Column( name = "user_id", length = 11, nullable = false )
     private Integer userId;
 
+    @Column(name = "product_id")
+    private Integer productId;
+
     @Column( name = "order_no", length = 50 )
     private String orderNo;
-
-    @Column(name = "product_name",length = 50)
-    private String productName;
 
     @Column( name = "amount", columnDefinition = "decimal(14,2)" )
     private BigDecimal amount;
@@ -34,6 +34,10 @@ public class Order extends BaseEntity {
     @ManyToOne( fetch = FetchType.EAGER )
     @JoinColumn( name = "user_id", insertable = false, updatable = false )
     private User user;
+
+    @ManyToOne( fetch = FetchType.EAGER )
+    @JoinColumn(name = "product_id",insertable = false, updatable = false)
+    private Product product;
 
 
 }

@@ -25,15 +25,11 @@ public class UserPayRecordController {
     @Autowired
     private IUserPayRecordService userPayRecordService;
 
-    @Autowired
-    private IUserService userService;
-
-    @RequestMapping("admin/payrecords")
-    public String findPage(@PageableDefault( sort = { "id" }, direction = Sort.Direction.DESC)
-                                       Pageable pageable, HttpServletRequest request, Model model){
-
-        Page<User> page = userService.findPageable(pageable);
-        model.addAttribute("page",page);
-        return "admin/payrecord_list";
+    @RequestMapping( "admin/payrecords" )
+    public String findPage( @PageableDefault( sort = { "id" }, direction = Sort.Direction.DESC )
+                                    Pageable pageable, HttpServletRequest request, Model model ) {
+        Page< UserPayRecord > page = userPayRecordService.findPageable( pageable );
+        model.addAttribute( "page", page );
+        return "admin/payrecords";
     }
 }

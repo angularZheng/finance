@@ -25,6 +25,14 @@ public class DateUtils {
         return date;
     }
 
+    /**
+     * 获取当前时间日期
+     * @return
+     */
+    public static Date now(){
+        return new Date();
+    }
+
     public static void main( String[] args ) {
         System.out.println( DateUtils.addMonth( new Date(),1 ) );
     }

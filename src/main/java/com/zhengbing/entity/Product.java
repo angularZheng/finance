@@ -21,4 +21,7 @@ public class Product extends BaseEntity{
 
     @Column(name = "price", columnDefinition = "decimal(14,2)" )
     private BigDecimal price;
+
+    @Column(name = "expire_time",length = 2)
+    private Integer expireTime;
 }

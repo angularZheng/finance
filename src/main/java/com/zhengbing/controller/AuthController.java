@@ -1,6 +1,5 @@
 package com.zhengbing.controller;
 
-import com.zhengbing.entity.Role;
 import com.zhengbing.entity.User;
 import com.zhengbing.service.IRoleService;
 import com.zhengbing.service.IUserService;
@@ -43,7 +42,7 @@ public class AuthController {
      */
     @RequestMapping("wxLogin")
     public void wxLogin(HttpServletResponse response) throws IOException {
-        String backUrl = "http://afa46dbf.ngrok.io/callback";
+        String backUrl = "http://4b3500e3.ngrok.io/callback";
         String requestUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect";
         requestUrl = requestUrl.replace("APPID", AuthUtil.APPID);
         requestUrl = requestUrl.replace("REDIRECT_URI", URLEncoder.encode(backUrl, "UTF-8"));
@@ -80,15 +79,15 @@ public class AuthController {
         if (!StringUtils.isEmpty(openid)) {
             if (null == userService.findByOpenId(openid)) {
                 user = new User();
-                user.setCity(userinfo.getString("city"));
-                user.setProvince(userinfo.getString("province"));
                 user.setCountry(userinfo.getString("country"));
+                user.setProvince(userinfo.getString("province"));
+                user.setCity(userinfo.getString("city"));
                 user.setSex(userinfo.getInt("sex"));
                 user.setOpenId(userinfo.getString("openid"));
                 user.setNickname(userinfo.getString("nickname"));
 //              user.setLanguage(userinfo.getString("language" ));
                 user.setHeadImgUrl(userinfo.getString("headimgurl"));
-                user.setVipLevel(Constants.VIP_NORMAL);
+                user.setVipLevel(Constants.VIP_FEE);
                 user.setRoleId(Constants.ROLE_VIP);
 
                 user = userService.save(user);
