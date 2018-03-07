@@ -41,7 +41,7 @@ public class WXPayConfigImpl extends WXPayConfig {
     }
 
     public String getKey() {
-        return "8b85dce2945a22d2807de3b053bba65f";
+        return "297e39c55d5eeaf6015d5eef8c370004";
     }
 
     public InputStream getCertStream() {

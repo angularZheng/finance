@@ -26,7 +26,8 @@ public class WebSecurityConifg extends WebSecurityConfigurerAdapter{
     //访问http://localhost:8080/hello 需要登录验证后，且具备 “ADMIN”权限hasAuthority("ADMIN")才可以访问
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+
+        http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
 //                .antMatchers("/home").permitAll()//访问：/home 无需登录认证权限

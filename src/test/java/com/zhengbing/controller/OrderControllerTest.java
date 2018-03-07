@@ -48,7 +48,7 @@ public class OrderControllerTest {
 
     @Test
     public void order() throws Exception {
-        MvcResult result = mvc.perform(post("/order/1").contentType( MediaType.APPLICATION_JSON))
+        MvcResult result = mvc.perform(post("/order/2").contentType( MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())// 模拟向testRest发送get请求
 //                .andExpect(content().contentType(MediaType.))// 预期返回值的媒体类型text/plain;charset=UTF-8
                 .andReturn();// 返回执行请求的结果

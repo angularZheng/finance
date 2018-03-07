@@ -9,13 +9,16 @@ import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URLEncoder;
 
@@ -87,16 +90,18 @@ public class AuthController {
                 user.setNickname(userinfo.getString("nickname"));
 //              user.setLanguage(userinfo.getString("language" ));
                 user.setHeadImgUrl(userinfo.getString("headimgurl"));
-                user.setVipLevel(Constants.VIP_FEE);
-                user.setRoleId(Constants.ROLE_VIP);
+                user.setVipLevel(Constants.VIP_LEVEL_INIT);
+                user.setRoleId(Constants.ROLE_NORMAL);
 
                 user = userService.save(user);
             } else {
                 user = userService.findByOpenId(openid);
             }
+            HttpSession session = request.getSession();
+            session.setAttribute( "user",user );
         }
         model.addAttribute("user", user);
-        if (user.getVipLevel() == Constants.VIP_FEE) {
+        if (user.getVipLevel() == Constants.VIP_LEVEL_INIT) {
             return "vip";
         } else {
             return "normal";

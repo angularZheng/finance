@@ -15,4 +15,9 @@ public class UserController {
     public String index() {
         return "index";
     }
+
+    @RequestMapping( value = "/vip" )
+    public String vip() {
+        return "vip";
+    }
 }

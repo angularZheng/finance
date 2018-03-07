@@ -53,17 +53,17 @@
     </div>
 </div>
 <script>
-    //TODO 改为post方式，参数不带到url中，防止微信支付页面未注册
+
     function weixinPayOrder(orderId){
         $.ajax({
             url:'/wxpay/pay/'+orderId,
             type:'GET',
             dataType: 'json',
             success:function(data){
-                if(data.errorMsg=='OK'){
+                if(data.return_code=='SUCCESS'){
                     callpay(data);
                 } else{
-                    $.alert(data.errorMsg);
+                    $.alert(data.return_msg);
                 }
             },
             error:function(xhr){
@@ -76,18 +76,17 @@
             "appId" : data.appId,
             "timeStamp" : data.timeStamp,
             "nonceStr" : data.nonceStr,
-            "package" : data.packageStr,
-            "signType" : "MD5",
+            "package" : data.package,
+            "signType" : data.signType,
             "paySign" : data.sign
         }, function(res) {
             WeixinJSBridge.log(res.err_msg);
+            console.log(res);
             if (res.err_msg == "get_brand_wcpay_request:ok") {
-                $.alert("支付成功!",function(){
                     alert("支付成功");
-//                    location.href='';
-                });
+                    window.location.href="/vip";
             } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
-                $.alert("用户取消支付！");
+                $.alert("取消支付！");
             } else {
                 $.alert("支付失败！");
             }

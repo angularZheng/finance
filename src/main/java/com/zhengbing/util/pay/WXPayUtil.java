@@ -194,6 +194,7 @@ public class WXPayUtil {
      * @return 签名
      */
     public static String generateSignature(final Map<String, String> data, String key, WXPayConstants.SignType signType) throws Exception {
+
         Set<String> keySet = data.keySet();
         String[] keyArray = keySet.toArray(new String[keySet.size()]);
         Arrays.sort(keyArray);
@@ -206,6 +207,7 @@ public class WXPayUtil {
                 sb.append(k).append("=").append(data.get(k).trim()).append("&");
         }
         sb.append("key=").append(key);
+        System.out.println(sb.toString());
         if (WXPayConstants.SignType.MD5.equals(signType)) {
             return MD5(sb.toString()).toUpperCase();
         }
@@ -295,5 +297,6 @@ public class WXPayUtil {
     public static String generateUUID() {
         return UUID.randomUUID().toString().replaceAll("-", "").substring(0, 32);
     }
+
 
 }

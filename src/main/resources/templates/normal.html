@@ -45,20 +45,62 @@
         <div class="weui-flex">
             <div class="weui-flex__item">
                 <div class="placeholder">
-                    <input type="hidden" name="userid" id="userid" th:value="${user.id}" />
                     <label style="color: red">超级会员专享特权</label>
                 </div>
             </div>
         </div>
-        <div class="weui-flex" style="margin-top:0.025em">
-            <div class="weui-flex__item"><div id="d1" class="diamand"  style="text-align: center"><img src="../static/images/diamond.png" />舆情分析</div></div>
-            <div class="weui-flex__item"><div id="d2" class="diamand"  style="text-align: center"><a href="/report"><img src="../static/images/diamond.png" />行业报告</a></div></div>
-            <div class="weui-flex__item"><div id="d3" class="diamand"  style="text-align: center"><img src="../static/images/diamond.png" />智能预测</div></div>
-        </div>
-        <div class="weui-flex" style="margin-top:0.025em">
-            <div class="weui-flex__item"><div id="d4" class="diamand" style="text-align: center"><img src="../static/images/diamond.png" />精准内参</div></div>
-            <div class="weui-flex__item"><div id="d5" class="diamand"  style="text-align: center"><a href="/recommand"><img src="../static/images/diamond.png" />牛股推荐</a></div></div>
-            <div class="weui-flex__item"><div id="d6" class="diamand"  style="text-align: center"><img src="../static/images/diamond.png" />专家点评</div></div>
+    </div>
+</div>
+        <div class="weui-grids" style="height: 70%">
+            <a href="#" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <img src="../static/images/diamond.png" alt="" />
+                </div>
+                <p class="weui-grid__label">
+                    舆情分析
+                </p>
+            </a>
+            <a href="/report" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <img src="../static/images/diamond.png" alt="" />
+                </div>
+                <p class="weui-grid__label">
+                    行业报告
+                </p>
+            </a>
+            <a href="#" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <img src="../static/images/diamond.png" alt="" />
+                </div>
+                <p class="weui-grid__label">
+                    智能预测
+                </p>
+            </a>
+            <a href="#" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <img src="../static/images/diamond.png" alt="" />
+                </div>
+                <p class="weui-grid__label">
+                    精准内参
+                </p>
+            </a>
+            <a href="/recommand" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <img src="../static/images/diamond.png" alt="" />
+                </div>
+                <p class="weui-grid__label">
+                    牛股推荐
+                </p>
+            </a>
+            <a href="#" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <img src="../static/images/diamond.png" alt="" />
+                </div>
+                <p class="weui-grid__label">
+                    专家点评
+                </p>
+            </a>
+
         </div>
 
 
@@ -97,11 +139,10 @@
         </div>
 
         <div class="weui-flex" style="text-align: center" >
-            <div class="weui-flex__item"style="margin: 0.3em"><a href="order/1" class="weui-btn weui-btn_warn">续费3个月</a></div>
-            <div class="weui-flex__item" style="margin: 0.3em"><a href="order/2" class="weui-btn weui-btn_warn">续费6个月</a></div>
+            <div class="weui-flex__item" style="margin: 0.3em"><a href="/order/1" class="weui-btn weui-btn_warn">续费3个月</a></div>
+            <div class="weui-flex__item" style="margin: 0.3em"><a href="/order/2" class="weui-btn weui-btn_warn">续费6个月</a></div>
         </div>
-    </div>
-</div>
+
 
 
 </body>
