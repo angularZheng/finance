@@ -13,7 +13,10 @@ import com.zhengbing.service.IOrderService;
 import com.zhengbing.service.IUserService;
 import com.zhengbing.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,8 +43,8 @@ public class PayController {
     private WXPay wxpay;
     private WXPayConfigImpl config;
 
-    @RequestMapping( value = "pay" )
-    public void wxpay( HttpServletRequest request, Integer orderId ) throws Exception {
+    @RequestMapping( value = "pay/{orderId}" )
+    public ResponseEntity wxpay( HttpServletRequest request, @PathVariable Integer orderId) throws Exception {
 
         config = WXPayConfigImpl.getInstance();
         wxpay = new WXPay( config );
@@ -49,22 +52,27 @@ public class PayController {
         Order order = orderService.findById( orderId );
 
         Map< String, String > data = new HashMap< String, String >();
-        data.put( "body", "会员充值" );
+        data.put( "body", order.getProduct().getProductName() );
         data.put( "out_trade_no", order.getOrderNo() );
-        data.put( "device_info", "" );
+        data.put( "device_info", "WEB" );
         data.put( "fee_type", "CNY" );
         data.put( "total_fee", order.getAmount() + "" );
         data.put( "spbill_create_ip", request.getLocalAddr() );
         data.put( "notify_url", "http://financetx.duapp.com/wxpay/notify" );
         data.put( "trade_type", "JSAPI" );  // 此处指定为公众号支付
-        data.put( "product_id", "12" );
+        data.put( "product_id", order.getProduct().getId()+"" );
 
         try {
             Map< String, String > resp = wxpay.unifiedOrder( data );
-            System.out.println( resp );
+            System.out.println(resp+"           *********************");
+            if ( null != resp ){
+                return ResponseEntity.ok( resp );
+            }
+
         } catch ( Exception e ) {
             e.printStackTrace();
         }
+        return ResponseEntity.badRequest().build();
     }
 
     @RequestMapping( value = "notify" )
@@ -124,9 +132,7 @@ public class PayController {
      * @param @param  request
      * @param @return
      * @param @throws Exception
-     *
      * @return Map<String,String>
-     *
      * @throws
      * @Title: getCallbackParams
      * @Description: TODO
@@ -135,7 +141,7 @@ public class PayController {
             throws Exception {
         InputStream inStream = request.getInputStream();
         ByteArrayOutputStream outSteam = new ByteArrayOutputStream();
-        byte[] buffer = new byte[1024];
+        byte[] buffer = new byte[ 1024 ];
         int len = 0;
         while ( ( len = inStream.read( buffer ) ) != -1 ) {
             outSteam.write( buffer, 0, len );

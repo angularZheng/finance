@@ -23,7 +23,6 @@
         }
     </style>
 </head>
-<!--<body =ontouchstart>-->
 <body>
 
 <div class="weui-flex">
@@ -42,22 +41,22 @@
     <div class="weui-form-preview__bd">
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">订单编号</label>
-            <span class="weui-form-preview__value"><p th:text="${order.orderNo}"></p> </span>
+            <span class="weui-form-preview__value"><p id="orderId" th:text="${order.orderNo}"></p> </span>
         </div>
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">商品</label>
-            <span class="weui-form-preview__value"><p th:text="${order.productName}"></p> </span>
+            <span class="weui-form-preview__value"><p th:text="${order.product.productName}"></p> </span>
         </div>
     </div>
     <div class="weui-form-preview__ft">
-        <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="/wxPay/pay">确认支付</button>
+        <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" th:onclick="'javascript:weixinPayOrder('+${order.id}+')'" >确认支付</button>
     </div>
 </div>
 <script>
     //TODO 改为post方式，参数不带到url中，防止微信支付页面未注册
     function weixinPayOrder(orderId){
         $.ajax({
-            url:'wxpay/pay',
+            url:'/wxpay/pay/'+orderId,
             type:'GET',
             dataType: 'json',
             success:function(data){

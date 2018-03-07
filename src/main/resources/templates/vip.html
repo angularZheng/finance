@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>首页</title>
+    <title>财经态势</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -57,22 +57,13 @@
             text-align: right;
             color: gold;
         }
-        #d1 img{
-            width: 7.25em;
-            height: 7.0em;
-        }
-        #d2 img{
-            width: 7.25em;
-            height: 7.0em;
-        }
-        #d3 img{
+        .diamand img{
             width: 7.25em;
             height: 7.0em;
         }
     </style>
 
 </head>
-<!--<body =ontouchstart>-->
 <body>
 
 <div class="weui-flex">
@@ -90,21 +81,21 @@
 </div>
 
 <div class="weui-flex">
-    <div class="weui-flex__item"><div class="placeholder" style="text-align: right;color: gold;">超级会员至</div></div>
+    <div class="weui-flex__item"><div class="placeholder" style="text-align: right;color: gold;">超级会员</div></div>至
     <div class="weui-flex__item"><div class="placeholder" style="text-align: left;color: gold">2017-10-30</div></div>
 </div>
     </div>
     </div>
 <div class="weui-panel" style="margin-top:0;border: 1px solid rgb(173,0,0);">
     <div class="weui-flex" style="margin-top:0.025em">
-        <div class="weui-flex__item"><div id="d1" style="text-align: center"><img src="../static/images/diamond.png" />舆情分析</div></div>
-        <div class="weui-flex__item"><div id="d2" style="text-align: center"><a href="/report"><img src="../static/images/diamond.png" />行业报告</a></div></div>
-        <div class="weui-flex__item"><div id="d3" style="text-align: center"><img src="../static/images/diamond.png" />智能预测</div></div>
+        <div class="weui-flex__item "><div id="d1" class="diamand" style="text-align: center"><img src="../static/images/diamond.png" />舆情分析</div></div>
+        <div class="weui-flex__item"><div id="d2" class="diamand" style="text-align: center"><a href="/report"><img src="../static/images/diamond.png" />行业报告</a></div></div>
+        <div class="weui-flex__item"><div id="d3" class="diamand" style="text-align: center"><img src="../static/images/diamond.png" />智能预测</div></div>
     </div>
     <div class="weui-flex" style="margin-top:0.025em">
-        <div class="weui-flex__item"><div id="d1" style="text-align: center"><img src="../static/images/diamond.png" />精准内参</div></div>
-        <div class="weui-flex__item"><div id="d2" style="text-align: center"><a href="/recommand"><img src="../static/images/diamond.png" />牛股推荐</a></div></div>
-        <div class="weui-flex__item"><div id="d3" style="text-align: center"><img src="../static/images/diamond.png" />专家点评</div></div>
+        <div class="weui-flex__item"><div id="d4" class="diamand" style="text-align: center"><img src="../static/images/diamond.png" />精准内参</div></div>
+        <div class="weui-flex__item"><div id="d5" class="diamand" style="text-align: center"><a href="/recommand"><img src="../static/images/diamond.png" />牛股推荐</a></div></div>
+        <div class="weui-flex__item"><div id="d6" class="diamand" style="text-align: center"><img src="../static/images/diamond.png" />专家点评</div></div>
     </div>
     <div class="weui-flex" style="text-align: center;margin-top: 0.7em;" >
         <div class="weui-flex__item"><a href="#" onclick="order()" class="weui-btn weui-btn_warn">续费超级会员</a></div>

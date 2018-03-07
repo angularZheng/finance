@@ -29,12 +29,15 @@ public class OrderController {
     @RequestMapping(value = "order/{productId}")
     public String order(@PathVariable Integer productId, HttpServletRequest request, Model model){
 
+        System.out.println(productId+"      :             ++++++++++++++++++++++++++++");
         Product product = productService.findById(productId);
+        System.out.println(product.getProductName()+":    ++++++++++++++++++++++++++++");
         // 生成应用内订单
         Order order = new Order();
         // order.setUserId( ParameterUtil.getIntParameter( request,"userId" ) );
         order.setUserId( 2 );
         order.setProductId(product.getId());
+        order.setProduct( product );
         order.setOrderNo( StringUtil.ganerateOrderNo() );
         order.setAmount( product.getPrice());
         order.setDescription( "");

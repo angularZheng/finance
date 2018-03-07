@@ -4,8 +4,6 @@ import com.zhengbing.util.pay.IWXPayDomain;
 import com.zhengbing.util.pay.WXPayConfig;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 
 public class WXPayConfigImpl extends WXPayConfig {
@@ -35,15 +33,15 @@ public class WXPayConfigImpl extends WXPayConfig {
 
     @Override
     public String getAppID() {
-        return "wx60e22b6e5dfa2efa";
+        return "wxb5c1fbfd9779d502";
     }
 
     public String getMchID() {
-        return "1490022692";
+        return "1452992902";
     }
 
     public String getKey() {
-        return "2ab9071b06b9f739b950ddb41db2690d";
+        return "8b85dce2945a22d2807de3b053bba65f";
     }
 
     public InputStream getCertStream() {

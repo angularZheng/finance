@@ -15,8 +15,8 @@ import java.io.IOException;
  */
 public class AuthUtil {
 
-    public static final String APPID="wx9307e00061c0cca0";
-    public static final String APPSECRET="dd4d1bb8449d651defef916d618a0893";
+    public static final String APPID="wxb5c1fbfd9779d502";
+    public static final String APPSECRET="8b85dce2945a22d2807de3b053bba65f";
 
     public static JSONObject doGetJson(String url) throws ClientProtocolException,IOException{
         JSONObject jsonpObject = null;
